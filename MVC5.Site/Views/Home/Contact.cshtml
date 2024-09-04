@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<main aria-labelledby="title">
+<main aria-labelledby="title" id="app">
+    <header-component></header-component>
+
     <h2 id="title">@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>
 
@@ -17,3 +19,23 @@
         <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
     </address>
 </main>
+
+@section scripts {
+	<script>
+		const { createApp, ref } = Vue;
+
+		const config = {
+			setup() {
+				const message = ref('Welcome to ASP.NET!');
+
+				return {
+					message,
+				};
+			}
+		};
+
+		const app = Vue.createApp(config);
+        app.component("header-component", HeaderComponent);
+		app.mount('#app');
+	</script>
+}
